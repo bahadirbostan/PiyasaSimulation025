@@ -9,48 +9,46 @@ WIDTH, HEIGHT = 700, 800
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("PiyasaSim2025")
 
-# Görseller
-road = pygame.image.load("road.png")
+
+road = pygame.image.load("Images/road.png")
 road = pygame.transform.scale(road, (700, 800))
 road_posFirst = [-60.5, 0]
 road_posSecond = [-60.5, -800]
 
-civic_img = pygame.image.load("civic3.png")
+civic_img = pygame.image.load("Images/civic3.png")
 civic = civic_img.get_rect(center=(WIDTH / 3.2, HEIGHT / 1.2))
 civic_velX = 0
 civic_velY = 0
 
 npc_imgs = [
-    pygame.image.load("npcArac3.png"),
-    pygame.image.load("npcKamyon2.png"),
-    pygame.image.load("npcArac2.png")
+    pygame.image.load("Images/npcArac3.png"),
+    pygame.image.load("Images/npcKamyon2.png"),
+    pygame.image.load("Images/npcArac2.png")
 ]
 
-# Sesler
-exhaust_start = pygame.mixer.Sound("exhauststart.wav")
-engine_loop = pygame.mixer.Sound("ilerleme.wav")
-engine_stop = pygame.mixer.Sound("yavaslama.wav")
-break_sound = pygame.mixer.Sound("fren.wav")
+
+exhaust_start = pygame.mixer.Sound("Sounds/exhauststart.wav")
+engine_loop = pygame.mixer.Sound("Sounds/ilerleme.wav")
+engine_stop = pygame.mixer.Sound("Sounds/yavaslama.wav")
+break_sound = pygame.mixer.Sound("Sounds/fren.wav")
 
 break_sound.set_volume(0.1)
 engine_loop.set_volume(50)
 engine_stop.set_volume(0.1)
 exhaust_start.set_volume(0.5)
-# Egzoz partikülleri
+
 exhaust_particles = []
 npc_exhaust_particles = []
 
-# Yol ayarları
+
 npcs = []
 lane_width = 120
 lane_count = 4
 left_margin = 50
 right_margin = 60
 
-# W basılı mı kontrolü
-w_pressed = False
 
-# Fonksiyonlar
+w_pressed = False
 def create_npc():
     npc_img = random.choice(npc_imgs)
     lane = random.randint(0, lane_count - 1)
@@ -130,11 +128,134 @@ def check_npc_collisions():
                     npc2['speed'] = 1.1
 
                 return
+def mainMenu():
+    menu_font = pygame.font.SysFont(None, 70)
+    selected_option = None
+    while selected_option is None:
+        screen.fill((30, 30, 30)) 
 
 
-# Ana oyun döngüsü
+        play_text = menu_font.render("Oyna", True, (255, 255, 255))
+        credits_text = menu_font.render("Credits", True, (255, 255, 255))
+        exit_text = menu_font.render("Çıkış", True, (255, 255, 255))
+
+        play_rect = play_text.get_rect(center=(WIDTH // 2, HEIGHT // 2 - 100))
+        credits_rect = credits_text.get_rect(center=(WIDTH // 2, HEIGHT // 2))
+        exit_rect = exit_text.get_rect(center=(WIDTH // 2, HEIGHT // 2 + 100))
+
+        screen.blit(play_text, play_rect)
+        screen.blit(credits_text, credits_rect)
+        screen.blit(exit_text, exit_rect)
+
+        pygame.display.flip()
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if play_rect.collidepoint(event.pos):
+                    selected_option = "play"
+                elif credits_rect.collidepoint(event.pos):
+                    showCredits()
+                elif exit_rect.collidepoint(event.pos):
+                    pygame.quit()
+                    exit()
+
+        clock.tick(60)               
+                     
+        
+    
+    
+    
+def scoreBoard(score):
+    digit_font = pygame.font.SysFont(None, 40)
+    score_str = str(int(score))
+
+  
+    clear_rect = pygame.Rect(WIDTH - 50, 10, 40, len(score_str) * 45)
+    pygame.draw.rect(screen, (30, 30, 30), clear_rect) 
+
+
+    x_pos = WIDTH - 30
+    y_pos = 10
+
+    for digit in score_str:
+        digit_surface = digit_font.render(digit, True, (255, 255, 255))
+        digit_rect = digit_surface.get_rect(center=(x_pos, y_pos + 20))
+        screen.blit(digit_surface, digit_rect)
+        y_pos += 45 
+
+
+
+  
+    
+    
+def showCredits():
+    font = pygame.font.SysFont(None, 50)
+    running = True
+    while running:
+        screen.fill((10, 10, 30))
+        credits_text = font.render("Yapan: BahadirBuzdstan AsilMumetUnalAhmetAnalkan - 2025", True, (255, 255, 255))
+        back_text = font.render("Geri dönmek için herhangi bir tuşa bas", True, (180, 180, 180))
+        screen.blit(credits_text, (WIDTH // 2 - 250, HEIGHT // 2 - 50))
+        screen.blit(back_text, (WIDTH // 2 - 300, HEIGHT // 2 + 30))
+        pygame.display.flip()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+            elif event.type == pygame.KEYDOWN:
+                running = False
+    
+def gameOverMenu(score):
+    font = pygame.font.SysFont(None, 60)
+    small_font = pygame.font.SysFont(None, 45)
+    selected = False
+
+    while not selected:
+        screen.fill((20, 20, 20))
+        score_text = font.render(f"Skorun: {int(score)}", True, (255, 255, 0))
+        screen.blit(score_text, (WIDTH // 2 - score_text.get_width() // 2, HEIGHT // 2 - 150))
+
+        menu_text = small_font.render("Ana Menüye Dön", True, (255, 255, 255))
+        quit_text = small_font.render("Çıkış", True, (255, 255, 255))
+
+        menu_rect = menu_text.get_rect(center=(WIDTH // 2, HEIGHT // 2))
+        quit_rect = quit_text.get_rect(center=(WIDTH // 2, HEIGHT // 2 + 80))
+
+        pygame.draw.rect(screen, (70, 70, 70), menu_rect.inflate(30, 15))
+        pygame.draw.rect(screen, (70, 70, 70), quit_rect.inflate(30, 15))
+
+        screen.blit(menu_text, menu_rect)
+        screen.blit(quit_text, quit_rect)
+
+        pygame.display.flip()
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if menu_rect.collidepoint(event.pos):
+                    selected = True
+                    mainMenu()  
+                elif quit_rect.collidepoint(event.pos):
+                    pygame.quit()
+                    exit()
+
+        clock.tick(60)
+
+    
+    
+    
+
+
 game_over = False
 font = pygame.font.SysFont(None, 80)
+score = 0 
+
+mainMenu() 
 
 while not game_over:
     for event in pygame.event.get():
@@ -161,14 +282,13 @@ while not game_over:
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_w:
                 w_pressed = False
-        
                 engine_stop.play()
                 civic_velY = 0
             if event.key in [pygame.K_s, pygame.K_a, pygame.K_d]:
                 civic_velX = 0
                 civic_velY = 0
 
-    # Civic pozisyon güncelle
+  
     civic.x += civic_velX
     civic.y += civic_velY
 
@@ -182,7 +302,7 @@ while not game_over:
     if civic.top <= 40:
         civic.top = 40
 
-    # Arka plan hareketi
+  
     road_speed = 5.4 + abs(civic_velY) * 0.5
     road_speed = max(4.3, min(road_speed, 6.5))
     road_posFirst[1] += road_speed
@@ -192,11 +312,15 @@ while not game_over:
     if road_posSecond[1] >= HEIGHT:
         road_posSecond[1] = -HEIGHT
 
-    # Egzoz partikülü oluştur (civic)
+
+    score += road_speed * 0.2  
+    scoreBoard(score)         
+
+
     if w_pressed:
         create_exhaust(civic.centerx - 15, civic.bottom - 5)
 
-    # NPC güncellemeleri
+ 
     adjust_speed_based_on_proximity()
     check_npc_collisions()
     for npc in npcs:
@@ -207,27 +331,28 @@ while not game_over:
         if random.random() < 0.02:
             create_exhaust(npc['rect'].centerx - 10, npc['rect'].bottom - 5, is_npc=True)
 
-    # Çarpışma kontrolü
+
     for npc in npcs:
         if civic.colliderect(npc['rect']):
             screen.fill((0, 0, 0))
             text = font.render("KAZA YAPTIN!", True, (255, 0, 0))
             screen.blit(text, (WIDTH // 2 - 200, HEIGHT // 2 - 50))
             pygame.display.update()
-            pygame.time.wait(2000)
+            pygame.time.wait(1500)
+            gameOverMenu(score)  
             game_over = True
 
-    # Çizimler
+   
     screen.blit(road, road_posFirst)
     screen.blit(road, road_posSecond)
     screen.blit(civic_img, civic)
-
+     
     for npc in npcs:
         screen.blit(npc['img'], npc['rect'])
 
     update_and_draw_particles()
     generate_npcs()
-    clock.tick(60)
     pygame.display.update()
+    clock.tick(60)
 
 pygame.quit()

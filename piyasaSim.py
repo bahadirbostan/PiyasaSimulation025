@@ -9,7 +9,7 @@ WIDTH, HEIGHT = 700, 800
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("PiyasaSim2025")
 
-# Görseller
+
 road = pygame.image.load("Images/road.png")
 road = pygame.transform.scale(road, (700, 800))
 road_posFirst = [-60.5, 0]
@@ -26,7 +26,7 @@ npc_imgs = [
     pygame.image.load("Images/npcArac2.png")
 ]
 
-# Sesler
+
 exhaust_start = pygame.mixer.Sound("Sounds/exhauststart.wav")
 engine_loop = pygame.mixer.Sound("Sounds/ilerleme.wav")
 engine_stop = pygame.mixer.Sound("Sounds/yavaslama.wav")
@@ -36,21 +36,19 @@ break_sound.set_volume(0.1)
 engine_loop.set_volume(50)
 engine_stop.set_volume(0.1)
 exhaust_start.set_volume(0.5)
-# Egzoz partikülleri
+
 exhaust_particles = []
 npc_exhaust_particles = []
 
-# Yol ayarları
+
 npcs = []
 lane_width = 120
 lane_count = 4
 left_margin = 50
 right_margin = 60
 
-# W basılı mı kontrolü
-w_pressed = False
 
-# Fonksiyonlar
+w_pressed = False
 def create_npc():
     npc_img = random.choice(npc_imgs)
     lane = random.randint(0, lane_count - 1)
@@ -348,7 +346,7 @@ while not game_over:
     screen.blit(road, road_posFirst)
     screen.blit(road, road_posSecond)
     screen.blit(civic_img, civic)
-
+     
     for npc in npcs:
         screen.blit(npc['img'], npc['rect'])
 
