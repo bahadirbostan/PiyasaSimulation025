@@ -1,15 +1,15 @@
-# PiyasaSimulator2025
+# PiyasaSimulation2025
 
-**PiyasaSim2025**, bir araba sürüş simülasyonu oyunudur. Oyuncu, bir şehir yolunda ilerleyerek puan kazanmaya çalışırken, diğer araçlardan kaçınmalı ve çarpışmadan yoluna devam etmelidir.
+**PiyasaSimulation2025**, bir araba sürüş simülasyonu oyunudur. Oyuncu, bir şehir yolunda ilerleyerek puan kazanmaya çalışırken, diğer araçlardan kaçınmalı ve çarpışmadan yoluna devam etmelidir.
 
 ## 🎮 Özellikler
 
-- Gerçek zamanlı sürüş mekaniği  
-- Hızlanma, yavaşlama ve dönüş sistemi  
-- NPC (diğer araçlar) ile dinamik etkileşim  
-- Egzoz partikül efektleri  
-- Skor takibi ve oyun sonu ekranı  
-- Ses efektleri ile sürükleyici deneyim
+- Gerçek zamanlı sürüş mekaniği.  
+- Hızlanma, yavaşlama ve dönüş sistemi.  
+- NPC (diğer araçlar) ile dinamik etkileşim.  
+- Egzoz partikül efektleri.  
+- Skor takibi ve oyun sonu ekranı.
+- Ses efektleri ile sürükleyici deneyim.
 
 ## 🛠️ Gereksinimler
 
@@ -50,7 +50,7 @@ python main.py
 ## 📁 Klasör Yapısı
 
 ```
-PiyasaSimulator2025/
+PiyasaSimulation2025/
 │
 ├── Images/
 │   ├── civic3.png
