@@ -72,9 +72,9 @@ PiyasaSimulator2025/
 
 ## 👥 Katkıda Bulunanlar
 
-- Bahadır Bostan  
-- Asil Muhammet Ünal  
-- Ahmet Hakan Ataş  
+- Bahadır Bostan  | OGRNO : 23253032
+- Asil Muhammet Ünal  | OGRNO : 23253063
+- Ahmet Hakan Ataş  | OGRNO : 23253043
 
 
 ---
