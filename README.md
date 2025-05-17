@@ -4,12 +4,12 @@
 
 ## 🎮 Özellikler
 
-- Gerçek zamanlı sürüş mekaniği  
-- Hızlanma, yavaşlama ve dönüş sistemi  
-- NPC (diğer araçlar) ile dinamik etkileşim  
-- Egzoz partikül efektleri  
-- Skor takibi ve oyun sonu ekranı  
-- Ses efektleri ile sürükleyici deneyim
+- Gerçek zamanlı sürüş mekaniği.  
+- Hızlanma, yavaşlama ve dönüş sistemi.  
+- NPC (diğer araçlar) ile dinamik etkileşim.  
+- Egzoz partikül efektleri.  
+- Skor takibi ve oyun sonu ekranı.
+- Ses efektleri ile sürükleyici deneyim.
 
 ## 🛠️ Gereksinimler
 
