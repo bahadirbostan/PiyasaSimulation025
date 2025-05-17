@@ -1,6 +1,6 @@
-# PiyasaSimulator2025
+# PiyasaSimulation2025
 
-**PiyasaSim2025**, bir araba sürüş simülasyonu oyunudur. Oyuncu, bir şehir yolunda ilerleyerek puan kazanmaya çalışırken, diğer araçlardan kaçınmalı ve çarpışmadan yoluna devam etmelidir.
+**PiyasaSimulation2025**, bir araba sürüş simülasyonu oyunudur. Oyuncu, bir şehir yolunda ilerleyerek puan kazanmaya çalışırken, diğer araçlardan kaçınmalı ve çarpışmadan yoluna devam etmelidir.
 
 ## 🎮 Özellikler
 
@@ -50,7 +50,7 @@ python main.py
 ## 📁 Klasör Yapısı
 
 ```
-PiyasaSimulator2025/
+PiyasaSimulation2025/
 │
 ├── Images/
 │   ├── civic3.png
